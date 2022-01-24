@@ -19,6 +19,22 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
-
-
+	@Bean
+	public CommandLineRunner loadData(RestauranteRepository repository) {
+		return (args) -> {
+			repository.save(
+					Restaurante.builder()
+							.nombre("RestoName1")
+							.descripcion("resto1")
+							.horaCierre("08:00")
+							.longitud("123.12")
+							.latitud("123.12")
+							.ciudad(Ciudad.builder().
+									nombre("NombreCiudad")
+									.pais(Pais.builder().nombre("NombrePais").build())
+									.build())
+							.build()
+			);
+		};
 	}
+}
