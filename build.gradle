@@ -23,6 +23,12 @@ configurations.all {
 	exclude module: 'spring-boot-starter-logging'
 }
 
+dependencyManagement {
+	imports {
+		mavenBom 'org.springframework.session:spring-session-bom:2021.1.1'
+	}
+}
+
 dependencies {
 	implementation 'org.springdoc:springdoc-openapi-ui:1.6.4'
 
@@ -40,6 +46,9 @@ dependencies {
 
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 	implementation 'redis.clients:jedis'
+
+	implementation 'org.springframework.session:spring-session-data-redis'
+
 }
 
 test {

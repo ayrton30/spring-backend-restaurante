@@ -4,13 +4,12 @@ import com.coderhouse.app.handler.IdNotFoundException;
 import com.coderhouse.app.model.Restaurante;
 import com.coderhouse.app.service.RestauranteService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameters;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
 
 @Slf4j
 @RestController
@@ -31,7 +30,7 @@ public class RestauranteController {
 
     @Operation(summary = "Obtener un restaurant a partir de un id")
     @GetMapping("/{id}")
-    public Restaurante getById(@PathVariable Long id) throws IdNotFoundException  {
+    public Restaurante getById(@PathVariable Long id, HttpSession session) throws IdNotFoundException  {
         log.info("Request GET getById:" + id);
         return this.service.getRestauranteById(id);
     }
